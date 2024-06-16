@@ -15,8 +15,8 @@ import argparse
 import json
 
 import numpy as np
-import gym
-from gym import wrappers
+import gymnasium
+from gymnasium import wrappers
 from pynput.keyboard import Key, Listener
 
 
@@ -51,14 +51,14 @@ def get_action(input_state):
             action = keymap[key2]
         elif key2.isdigit():
             n = int(key2)
-            if isinstance(action_space, gym.spaces.Discrete) and n < action_space.n:
+            if isinstance(action_space, gymnasium.spaces.Discrete) and n < action_space.n:
                 action = n
 
     if action == 'same':
         action = input_state.recent_action
     elif action == 'next' or action == 'prev':
         delta = 1 if action == 'next' else -1
-        if isinstance(action_space, gym.spaces.Discrete):
+        if isinstance(action_space, gymnasium.spaces.Discrete):
             if input_state.recent_action is None:
                 action = 0
             else:
@@ -96,7 +96,7 @@ def main():
         keymap['default'] = 'random'
 
     # Initialization
-    env = gym.make(args.game)
+    env = gymnasium.make(args.game, render_mode="human")
     state = env.reset()
     done = False
     t = 0
@@ -135,7 +135,9 @@ def main():
             if args.delay is not None:
                 time.sleep(args.delay / 1000)
             action = get_action(input_state)
-            state2, reward, done, info = env.step(action)
+            state2, reward, terminated, truncated, info = env.step(action)
+            if terminated or truncated:
+                done = True
             if out_dir is not None:
                 states.append(state2)
                 rewards.append(reward)
