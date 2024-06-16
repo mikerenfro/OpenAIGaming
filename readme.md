@@ -1,3 +1,18 @@
+# Mike's notes:
+
+Forked from https://github.com/sharmaeklavya2/OpenAIGaming and updated for newer Gymnasium libraries.
+
+Was up and running in a Windows Conda environment with [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) installed by running:
+
+```
+conda create -n env-name gymnasium
+pip install gymnasium[box2d]
+pip install pynput
+python play.py LunarLander-v2
+```
+
+Original README.md content below:
+
 # OpenAI Gaming
 
 Play games in the [OpenAI gym](https://gym.openai.com/envs/) using the keyboard.
