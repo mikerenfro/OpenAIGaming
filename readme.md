@@ -2,8 +2,10 @@
 
 Forked from https://github.com/sharmaeklavya2/OpenAIGaming and updated for newer Gymnasium libraries.
 
-Was up and running in a Windows Conda environment with [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) installed by running:
+Tested in a Windows Conda environment with [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) installed. The Visual Studio packages I installed can be imported from the `build-tools-2022.vsconfig` file in this repository.
 
+
+Conda/Python steps:
 ```
 conda create -n env-name gymnasium
 pip install gymnasium[box2d]
